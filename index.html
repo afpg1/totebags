@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FAIO TOTEBAGS — totebags de diseño hechas para llevar tu estilo contigo. Clásicas y premium, hechas a mano.">
+<meta name="theme-color" content="#2A1F17">
+<title>FAIO TOTEBAGS · Diseños para llevar tu estilo contigo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --canvas: #EFE6D8;
+    --paper: #FAF6EE;
+    --ink: #2A1F17;
+    --ink-soft: #6B5744;
+    --tan: #9C6B3E;
+    --tan-dark: #7C4F28;
+    --sage: #7C8563;
+    --line: #DACCB6;
+    --radius: 8px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: "Work Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img{ max-width: 100%; display: block; }
+
+  a{ color: inherit; }
+
+  /* ---------- textura sutil de fondo ---------- */
+  body{
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(42,31,23,0.05) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  /* ---------- encabezado ---------- */
+  .encabezado{
+    text-align: center;
+    padding: 76px 24px 40px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .marca{
+    font-family: "Work Sans", sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.32em;
+    color: var(--tan-dark);
+    margin: 0 0 18px;
+  }
+
+  .encabezado h1{
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    line-height: 1;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+
+  .subtitulo{
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ---------- filtros ---------- */
+  .filtros{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 20px;
+    background: rgba(239, 230, 216, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .filtros button{
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 9px 20px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .filtros button:hover{
+    border-color: var(--tan);
+    color: var(--ink);
+  }
+
+  .filtros button.activo{
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+
+  .filtros button:focus-visible,
+  .tarjeta:focus-visible,
+  .cerrar:focus-visible,
+  .whatsapp:focus-visible{
+    outline: 2px solid var(--tan-dark);
+    outline-offset: 3px;
+  }
+
+  /* ---------- galería ---------- */
+  .galeria{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px 26px;
+  }
+
+  .tarjeta{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .tarjeta:hover,
+  .tarjeta:focus-visible{
+    border-color: var(--tan);
+    transform: translateY(-3px);
+  }
+
+  .foto-contenedor{
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--line);
+  }
+
+  .foto-contenedor img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .tarjeta:hover .foto-contenedor img{
+    transform: scale(1.04);
+  }
+
+  .info{
+    padding: 16px 18px 18px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .info h2{
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin: 0 0 4px;
+  }
+
+  .info p{
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  .sin-resultados{
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--ink-soft);
+    padding: 40px 0;
+    font-size: 1rem;
+  }
+
+  /* ---------- pie ---------- */
+  .pie{
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 56px 24px 40px;
+    position: relative;
+  }
+
+  .pie::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background-image: repeating-linear-gradient(90deg, rgba(250,246,238,0.4) 0 8px, transparent 8px 16px);
+  }
+
+  .pie-marca{
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin: 0 0 6px;
+  }
+
+  .pie p{
+    margin: 0 0 4px;
+    color: rgba(250,246,238,0.75);
+    font-size: 0.95rem;
+  }
+
+  .pie-redes{
+    margin-top: 18px !important;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .pie-redes a{
+    text-decoration: none;
+    color: var(--paper);
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(250,246,238,0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .pie-redes a:hover{
+    color: #E8C9A0;
+    border-color: #E8C9A0;
+  }
+
+  /* ---------- modal ---------- */
+  .modal{
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 14, 9, 0.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .modal.activo{ opacity: 1; }
+
+  .modal[hidden]{ display: none; }
+
+  .modal-contenido{
+    background: var(--paper);
+    border-radius: 14px;
+    max-width: 420px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+    padding-bottom: 28px;
+  }
+
+  .modal-contenido img{
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .modal-titulo{
+    font-family: "Fraunces", serif;
+    font-size: 1.4rem;
+    margin: 20px 24px 4px;
+  }
+
+  .modal-precio{
+    color: var(--ink-soft);
+    font-size: 1rem;
+    margin: 0 24px 20px;
+  }
+
+  .whatsapp{
+    display: inline-block;
+    margin: 0 24px;
+    width: calc(100% - 48px);
+    background: var(--tan);
+    color: var(--paper);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.98rem;
+    padding: 14px 20px;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+  }
+
+  .whatsapp:hover{ background: var(--tan-dark); }
+
+  .cerrar{
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(250,246,238,0.15);
+    color: var(--paper);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .cerrar:hover{ background: rgba(250,246,238,0.3); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  @media (max-width: 480px){
+    .encabezado{ padding: 56px 20px 32px; }
+    .galeria{ grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px 16px; padding: 32px 16px 72px; }
+    .filtros{ gap: 8px; padding: 12px 16px; }
+    .filtros button{ padding: 8px 15px; font-size: 0.86rem; }
+  }
+</style>
+</head>
+
+<body>
+
+<header class="encabezado">
+    <p class="marca">FAIO</p>
+    <h1>Totebags</h1>
+    <p class="subtitulo">Diseños para llevar tu estilo contigo 🤎</p>
+</header>
+
+<nav class="filtros" role="tablist" aria-label="Filtrar diseños">
+    <button class="activo" role="tab" aria-selected="true" onclick="filtrar('todos', this)">Todos</button>
+    <button role="tab" aria-selected="false" onclick="filtrar('clasica', this)">Clásicas</button>
+    <button role="tab" aria-selected="false" onclick="filtrar('premium', this)">Premium</button>
+</nav>
+
+<main class="galeria">
+    <!--
+    ==========================================
+    CAMBIA SOLO ESTAS COSAS:
+    1. src="..." = enlace de tu foto (guardada en la carpeta "img")
+    2. Nombre del diseño
+    3. Tipo: clasica o premium
+    4. Precio
+    ==========================================
+    -->
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver No Es Suerte, Son Tus Ganas, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-01.jpg" alt="No Es Suerte, Son Tus Ganas" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>No Es Suerte, Son Tus Ganas</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Mariposa Infinito, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-02.jpg" alt="Mariposa Infinito" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Mariposa Infinito</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Good Vibes Only, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-03.jpg" alt="Good Vibes Only" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Good Vibes Only</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Huellitas En Mi Corazón, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-04.jpg" alt="Huellitas En Mi Corazón" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Huellitas En Mi Corazón</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Caribe Girl, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-05.jpg" alt="Caribe Girl" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Caribe Girl</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver No Hay Prisa, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-06.jpg" alt="No Hay Prisa" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>No Hay Prisa</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver No Es Suerte, Son Tus Ganas, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-07.jpg" alt="No Es Suerte, Son Tus Ganas" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>No Es Suerte, Son Tus Ganas</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Feria Artesanal Y Cultural, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-08.jpg" alt="Feria Artesanal Y Cultural" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Feria Artesanal Y Cultural</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Made In Tuchín, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-09.jpg" alt="Made In Tuchín" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Made In Tuchín</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Dioses Zenú, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-10.jpg" alt="Dioses Zenú" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Dioses Zenú</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Mañana Será Bonito, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-11.jpg" alt="Mañana Será Bonito" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Mañana Será Bonito</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Mientras Uno Esté Vivo, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-12.jpg" alt="Mientras Uno Esté Vivo" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Mientras Uno Esté Vivo</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Ojo De Loca No Se Equivoca, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-13.jpg" alt="Ojo De Loca No Se Equivoca" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Ojo De Loca No Se Equivoca</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Life Is Better By The Sea, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-14.jpg" alt="Life Is Better By The Sea" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Life Is Better By The Sea</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver De Tuchín Para El Mundo, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-15.jpg" alt="De Tuchín Para El Mundo" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>De Tuchín Para El Mundo</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver El Amor Debe Sentirse Como Ir Al Mar, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-16.jpg" alt="El Amor Debe Sentirse Como Ir Al Mar" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>El Amor Debe Sentirse Como Ir Al Mar</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Gatitos Frutales, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-17.jpg" alt="Gatitos Frutales" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Gatitos Frutales</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Good Things Take Time, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-18.jpg" alt="Good Things Take Time" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Good Things Take Time</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="clasica" tabindex="0" role="button" aria-label="Ver Hecha De Cachitos, Clásica, 35.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/clasica-19.jpg" alt="Hecha De Cachitos" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Hecha De Cachitos</h2>
+            <p>Clásica <span aria-hidden="true">·</span> $35.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="premium" tabindex="0" role="button" aria-label="Ver Un Día A La Vez, Premium, 45.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/premium-01.jpg" alt="Un Día A La Vez" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Un Día A La Vez</h2>
+            <p>Premium <span aria-hidden="true">·</span> $45.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="premium" tabindex="0" role="button" aria-label="Ver What Chill, Premium, 45.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/premium-02.jpg" alt="What Chill" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>What Chill</h2>
+            <p>Premium <span aria-hidden="true">·</span> $45.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="premium" tabindex="0" role="button" aria-label="Ver Tantas Razones Para Ser Feliz, Premium, 45.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/premium-03.jpg" alt="Tantas Razones Para Ser Feliz" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Tantas Razones Para Ser Feliz</h2>
+            <p>Premium <span aria-hidden="true">·</span> $45.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="premium" tabindex="0" role="button" aria-label="Ver Yo Te Llevo Dentro, Hasta La Raíz, Premium, 45.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/premium-04.jpg" alt="Yo Te Llevo Dentro, Hasta La Raíz" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Yo Te Llevo Dentro, Hasta La Raíz</h2>
+            <p>Premium <span aria-hidden="true">·</span> $45.000</p>
+        </div>
+    </article>
+
+    <article class="tarjeta" data-tipo="premium" tabindex="0" role="button" aria-label="Ver Totoro Sandía, Premium, 45.000 pesos" onclick="abrirFoto(this)">
+        <div class="foto-contenedor">
+            <img src="img/premium-05.jpg" alt="Totoro Sandía" loading="lazy" decoding="async">
+        </div>
+        <div class="info">
+            <h2>Totoro Sandía</h2>
+            <p>Premium <span aria-hidden="true">·</span> $45.000</p>
+        </div>
+    </article>
+
+    <p class="sin-resultados" id="sinResultados" hidden>No hay diseños en esta categoría todavía.</p>
+
+</main>
+
+<footer class="pie">
+    <p class="pie-marca">FAIO Totebags 🤎</p>
+    <p>Diseños para llevar tu estilo contigo.</p>
+    <p class="pie-redes">
+        <a href="https://www.instagram.com/totebags.faio/" target="_blank" rel="noopener">Instagram · @totebags.faio</a>
+        <a href="https://www.tiktok.com/@totebags.faio" target="_blank" rel="noopener">TikTok · Faio Tote Bags</a>
+    </p>
+</footer>
+
+<div class="modal" id="modal" onclick="cerrarFoto(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" hidden>
+    <button class="cerrar" onclick="cerrarFoto(event)" aria-label="Cerrar">&times;</button>
+
+    <div class="modal-contenido" onclick="event.stopPropagation()">
+        <img id="fotoGrande" src="" alt="">
+        <div class="modal-titulo" id="modalTitulo"></div>
+        <div class="modal-precio" id="modalPrecio"></div>
+
+        <!-- CAMBIA EL NÚMERO POR TU WHATSAPP -->
+        <a class="whatsapp"
+           id="whatsappLink"
+           href="https://wa.me/573225523587?text=Hola%20FAIO%20TOTEBAGS%2C%20quiero%20informaci%C3%B3n%20sobre%20una%20tote."
+           target="_blank" rel="noopener">
+           Pedir por WhatsApp
+        </a>
+    </div>
+</div>
+
+<script>
+const NUMERO_WHATSAPP = "573225523587";
+let ultimoFoco = null;
+
+function filtrar(tipo, boton) {
+    document.querySelectorAll(".filtros button").forEach(b => {
+        b.classList.remove("activo");
+        b.setAttribute("aria-selected", "false");
+    });
+    boton.classList.add("activo");
+    boton.setAttribute("aria-selected", "true");
+
+    let visibles = 0;
+    document.querySelectorAll(".tarjeta").forEach(tarjeta => {
+        const coincide = tipo === "todos" || tarjeta.dataset.tipo === tipo;
+        tarjeta.style.display = coincide ? "" : "none";
+        if (coincide) visibles++;
+    });
+
+    document.getElementById("sinResultados").hidden = visibles !== 0;
+}
+
+function abrirFoto(tarjeta) {
+    ultimoFoco = tarjeta;
+    const imagen = tarjeta.querySelector("img");
+    const nombre = tarjeta.querySelector("h2").textContent;
+    const precioTexto = tarjeta.querySelector("p").textContent;
+
+    document.getElementById("fotoGrande").src = imagen.src;
+    document.getElementById("fotoGrande").alt = imagen.alt;
+    document.getElementById("modalTitulo").textContent = nombre;
+    document.getElementById("modalPrecio").textContent = precioTexto;
+
+    const mensaje = `Hola FAIO TOTEBAGS, quiero información sobre la ${nombre} (${precioTexto}).`;
+    document.getElementById("whatsappLink").href =
+        `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+
+    const modal = document.getElementById("modal");
+    modal.hidden = false;
+    requestAnimationFrame(() => modal.classList.add("activo"));
+    modal.querySelector(".cerrar").focus();
+}
+
+function cerrarFoto(event) {
+    if (!event || event.target.id === "modal" || event.target.classList.contains("cerrar")) {
+        const modal = document.getElementById("modal");
+        modal.classList.remove("activo");
+        setTimeout(() => { modal.hidden = true; }, 200);
+        if (ultimoFoco) ultimoFoco.focus();
+    }
+}
+
+document.querySelectorAll(".tarjeta").forEach(tarjeta => {
+    tarjeta.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            abrirFoto(tarjeta);
+        }
+    });
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        cerrarFoto();
+    }
+});
+</script>
+
+</body>
+</html>
